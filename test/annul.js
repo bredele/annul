@@ -19,7 +19,7 @@ test('should return a promise', assert => {
 
 test('should reject a promise if not resolved before a given time', assert => {
   assert.plan(1)
-  cancel(new Promise(resolve => setTimeout(resolve, 400)), 200).then(
+  cancel(promise('hello', 400), 200).then(
     () => assert.end('resolved'),
     () => assert.ok('rejected')
   )
@@ -29,7 +29,7 @@ test('should reject a promise if not resolved before a given time', assert => {
 
 test('should reject a promise if not rejected before a given time', assert => {
   assert.plan(1)
-  cancel(new Promise((resolve, rejected) => setTimeout(rejected, 400)), 200).then(
+  cancel(promise(Promise.reject('hello'), 400), 200).then(
     () => assert.end('resolved'),
     () => assert.ok('rejected')
   )
@@ -38,8 +38,17 @@ test('should reject a promise if not rejected before a given time', assert => {
 
 test('should resolve a promise if resolved before a given time', assert => {
   assert.plan(1)
-  cancel(new Promise(resolve => setTimeout(() => resolve('hello'), 100)), 200).then(
+  cancel(promise('hello', 100), 200).then(
     val => assert.equal(val, 'hello'),
     () => assert.end('rejected')
+  )
+})
+
+
+test('should resolve a promise if resolved before a given time', assert => {
+  assert.plan(1)
+  cancel(promise(Promise.reject('hello'), 100), 200).then(
+    () => assert.end('rejected'),
+    reason => assert.equal(reason, 'hello')
   )
 })
