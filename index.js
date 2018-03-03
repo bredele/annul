@@ -1,17 +1,37 @@
 
 
+/**
+ * Cancel promise afer a given time.
+ *
+ * @param {Any} promise
+ * @param {Number} ms
+ * @api public
+ */
+
 module.exports = (promise, ms) => {
   return new Promise((resolve, reject) => {
     const timeout = setTimeout(() => {
-      reject()
+      reject(new Error(`Promise canceled after ${ms} milliseconds`))
     }, ms)
-    Promise.resolve(promise)
-      .then(value => {
-        clearTimeout(timeout)
-        resolve(value)
-      }, reason => {
-        clearTimeout(timeout)
-        reject(reason)
-      })
+    promisify(promise).then(value => {
+      clearTimeout(timeout)
+      resolve(value)
+    }, reason => {
+      clearTimeout(timeout)
+      reject(reason)
+    })
   })
+}
+
+
+/**
+ * Transform any passed value into a promise.
+ *
+ * @param {Any} value
+ * @return {Promise}
+ * @api private
+ */
+
+function promisify (value) {
+  return  Promise.resolve(typeof value === 'function' ? value() : value)
 }
