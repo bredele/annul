@@ -7,16 +7,28 @@ const promise = require('atleast')
 const cancel = require('..')
 
 
-test('should return a promise', assert => {
-  assert.plan(2)
-  const annul = cancel(promise('hello', 2000), 200)
-  assert.equal(typeof annul, 'object')
-  assert.equal(typeof annul.then, 'function')
+// test('should return a promise', assert => {
+//   assert.plan(2)
+//   const annul = cancel(promise('hello', 2000), 200)
+//   assert.equal(typeof annul, 'object')
+//   assert.equal(typeof annul.then, 'function')
+// })
+
+
+test('should reject a promise if not resolved before a given time', assert => {
+  assert.plan(1)
+  cancel(new Promise(resolve => setTimeout(resolve, 400)), 200).then(
+    () => assert.end('resolved'),
+    () => assert.ok('rejected')
+  )
 })
 
-//
-// test('should reject a promise if not resolved before a given time', assert => {
-//   assert.plan(1)
-//   cancel(promise('hello', 2000), 200)
-//     .then(null, () => assert.ok())
-// })
+
+
+test('should reject a promise if not rejected before a given time', assert => {
+  assert.plan(1)
+  cancel(new Promise((resolve, rejected) => setTimeout(rejected, 400)), 200).then(
+    () => assert.end('resolved'),
+    () => assert.ok('rejected')
+  )
+})
