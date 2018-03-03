@@ -1,0 +1,29 @@
+{
+  "name": "annul",
+  "version": "1.0.0",
+  "description": "Cancel a promise if not resolvef or rejected before a given time in miliseconds",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bredele/annul.git"
+  },
+  "keywords": [
+    "promise",
+    "cancel",
+    "rejected",
+    "resolved"
+  ],
+  "author": "Olivier Wietrich",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bredele/annul/issues"
+  },
+  "homepage": "https://github.com/bredele/annul#readme",
+  "devDependencies": {
+    "atleast": "github:bredele/atleast",
+    "tape": "^4.9.0"
+  }
+}
