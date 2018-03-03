@@ -26,7 +26,6 @@ test('should reject a promise if not resolved before a given time', assert => {
 })
 
 
-
 test('should reject a promise if not rejected before a given time', assert => {
   assert.plan(1)
   cancel(promise(Promise.reject('hello'), 400), 200).then(
@@ -63,7 +62,6 @@ test('should cancel a promise with error message', assert => {
     }
   )
 })
-
 
 test('should create a promise from a function and cancel it if necessary', assert => {
   assert.plan(1)
