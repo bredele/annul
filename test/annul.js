@@ -65,6 +65,6 @@ test('should cancel a promise with error message', assert => {
 
 test('should create a promise from a function and cancel it if necessary', assert => {
   assert.plan(1)
-  cancel(() => promise('hello', 100), 200)
+  cancel(success => setTimeout(() => success('hello'), 100), 200)
     .then(val => assert.equal(val, 'hello'))
 })

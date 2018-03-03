@@ -33,5 +33,8 @@ module.exports = (promise, ms) => {
  */
 
 function promisify (value) {
-  return  Promise.resolve(typeof value === 'function' ? value() : value)
+  return new Promise((resolve, reject) => {
+    if (typeof value === 'function') value(resolve, reject)
+    else resolve(value)
+  })
 }
