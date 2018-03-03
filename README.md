@@ -5,16 +5,28 @@
   [![Downloads](https://img.shields.io/npm/dm/annul.svg)](http://npm-stat.com/charts.html?package=annul)
   [![pledge](https://bredele.github.io/contributing-guide/community-pledge.svg)](https://github.com/bredele/contributing-guide/blob/master/guidelines.md)
 
-Cancel promise if it takes more than a given time to resolve or reject.
+
+Cancel promise if it takes more than a given time to resolve or reject. Annul is different than other modules as it can cancel functions and pretty much anything JavaScript supports.
 
 ## Usage
 
 ```js
 var annul = require('annul')
 
+// cancel fetch promise
 annul(fetch('/someslowapi'), 3000)
   .then(null, err => console.log(err))
 // Error: Promise canceled after 3000 ms
+
+
+// cancel function
+annul(slow, 3000)
+  .then(null, err => console.log(err))
+// Error: Promise canceled after 3000 ms
+
+function slow (success) {
+  return setTimeout(success, 6000)
+}
 
 ```
 
