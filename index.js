@@ -11,7 +11,7 @@ module.exports = (promise, ms) => {
         resolve(value)
       }, reason => {
         clearTimeout(timeout)
-        reject(value)
+        reject(reason)
       })
   })
 }
