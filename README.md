@@ -47,7 +47,7 @@ For questions and feedback please use our [twitter account](https://twitter.com/
 
 ## Contribution
 
-Bluff is an open source project and would not exist without its community. If you want to participate please make sure to read our <a href="https://github.com/bredele/contributing-guide/blob/master/guidelines.md" target="_blank">guideline</a> before making a pull request. If you have any annul-related project, component or other let everyone know in our wiki.
+annul is an open source project and would not exist without its community. If you want to participate please make sure to read our <a href="https://github.com/bredele/contributing-guide/blob/master/guidelines.md" target="_blank">guideline</a> before making a pull request. If you have any annul-related project, component or other let everyone know in our wiki.
 
 ## License
 
