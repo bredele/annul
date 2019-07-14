@@ -8,7 +8,7 @@
  * @api public
  */
 
-module.exports = (promise, ms) => {
+module.exports = function (promise, ms) {
   return new Promise((resolve, reject) => {
     const timeout = setTimeout(() => {
       reject(new Error(`Promise canceled after ${ms} milliseconds`))
